@@ -1,31 +1,32 @@
-<html ng-app="meuApp" ng-controller="Ctrl">
+<html ng-app="myApp" ng-controller="Ctrl">
 <head><meta charset="utf-8"></meta></head>
 <p ng-repeat="msg in messages">
 	<strong ng-bind="msg.user"></strong>
 	<span ng-bind="msg.text"></span>
 </p>
 <form ng-submit="submit()">
-<input type="text" ng-model="user" placeholder="Digite seu nome" required/>
-<input type="text" ng-model="text" placeholder="Digite sua mensagem" required/>
-<button type="submit">Enviar</button>
+<input type="text" ng-model="user" placeholder="Type your name" required/>
+<input type="text" ng-model="text" placeholder="Type your message" required/>
+<button type="submit">Send</button>
 </form>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
 <script src="https://www.gstatic.com/firebasejs/3.6.0/firebase.js"></script>
 <script src="https://cdn.firebase.com/libs/angularfire/2.0.1/angularfire.min.js"></script>
 <script>
 var config = {
-    apiKey: "AIzaSyBX4t1yJBgkaE-Xogr64-bidakD9DBjpHg",
-    authDomain: "dwarf.firebaseapp.com",
-    databaseURL: "https://dwarf.firebaseio.com",
-    storageBucket: "project-4755376943519591015.appspot.com",
-    messagingSenderId: "960637009294"
+    apiKey: "AIzaSyDDwMiOoSrmRTQZBR6QrFqwvtr_eXM8ELE",
+    authDomain: "webguide.firebaseapp.com",
+    databaseURL: "https://webguide.firebaseio.com",
+    projectId: "firebase-webguide",
+    storageBucket: "firebase-webguide.appspot.com",
+    messagingSenderId: "1089069256449"
 };
 firebase.initializeApp(config);
 </script>
 <script>
-angular.module('meuApp', ['firebase'])
+angular.module('myApp', ['firebase'])
 .controller('Ctrl', function($scope, $firebaseArray) {
-    var ref = firebase.database().ref().child('messages');
+    var ref = firebase.database().ref().child('3chat').child('messages');
     $scope.messages = $firebaseArray(ref);
     $scope.submit = function() {
     	$scope.messages.$add({
